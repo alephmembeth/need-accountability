@@ -2,7 +2,7 @@
 
 This is a repository for the paper “Need, Equity, and Accountability” by Frauke Meyer, [Jan Romann](https://github.com/JKRhb), Mark Siebel, Stefan Traub, and me.[^1]
 
-- A preprint is available in `/preprint`.
+- A preprint is available in `/preprint`, made with the [Springer Nature LaTeX template](https://www.springernature.com/gp/authors/campaigns/latex-author-support).
 - Data can be found in `/analysis`, along with a do file for analysis with Stata (version 14.2).
 
 An earlier version of this text has been published as a working paper of the research group “Need-Based Justice and Distribution Procedures”.[^2]
