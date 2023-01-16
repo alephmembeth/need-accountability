@@ -1,5 +1,3 @@
-cd "/Users/amb/Desktop/analysis"
-
 ********************************************************************************
 *** HEADER                                                                   ***
 ********************************************************************************
@@ -12,7 +10,7 @@ set scheme sj
 ********************************************************************************
 *** MAIN, SOCIODEMOGRAPHICS                                                  ***
 ********************************************************************************
-use "need_accountability_main_wide.dta", clear
+use "data_main_wide.dta", clear
 
 gen income_quota = .
    replace income_quota = 0 if equivalent_household_net_income <  1100
@@ -53,7 +51,7 @@ foreach y in age equivalent_household_net_income gender {
    }
 }
 
-use "need_accountability_main_long.dta", clear
+use "data_main_long.dta", clear
 
 
 /* Kruskal-Wallis equality-of-populations rank tests */
@@ -86,7 +84,7 @@ xtreg share_a equivalent_household_net_income accountability gender c.age##is_ca
 ********************************************************************************
 *** PILOT, ACCOUNTABILITY FIGURE                                             ***
 ********************************************************************************
-use "need_accountability_pilot.dta", clear
+use "data_pilot.dta", clear
 
 mean judgment, over(scenario accountability)
 
@@ -195,7 +193,7 @@ restore
 ********************************************************************************
 *** MAIN, MEANS                                                              ***
 ********************************************************************************
-use "need_accountability_main_long", clear
+use "data_main_long.dta", clear
 
 gen deviation_a = .
    replace deviation_a = (share_a - 0.5) / (share_need_a - 0.5) if scenario == 0
@@ -224,7 +222,7 @@ restore
 ********************************************************************************
 *** MAIN, SHARE FIGURE                                                       ***
 ********************************************************************************
-use "need_accountability_main_long.dta", clear
+use "data_main_long.dta", clear
 
 mean share_need_a share_productivity_a, over(scenario accountability)
 
@@ -270,7 +268,7 @@ restore
 ********************************************************************************
 *** MAIN, DEVIATION FIGURE                                                   ***
 ********************************************************************************
-use "need_accountability_main_long.dta", clear
+use "data_main_long.dta", clear
 
 gen deviation_a = .
    replace deviation_a = (share_a - 0.5) / (share_need_a - 0.5) if scenario == 0
@@ -318,7 +316,7 @@ restore
 ********************************************************************************
 *** MAIN, MEAN SHARE NEED FIGURE                                             ***
 ********************************************************************************
-use "need_accountability_main_long.dta", clear
+use "data_main_long.dta", clear
 
 local ymin = 0.3
 local ymax = 0.9
@@ -373,7 +371,7 @@ by scenario case, sort: ttest share_a, by(accountability) unequal welch level(90
 ********************************************************************************
 *** MAIN, MEAN SHARE PRODUCTIVITY FIGURE                                     ***
 ********************************************************************************
-use "need_accountability_main_long.dta", clear
+use "data_main_long.dta", clear
 
 local ymin = 0.0
 local ymax = 0.6
@@ -428,7 +426,7 @@ by scenario case, sort: ttest share_a, by(accountability) unequal welch level(90
 ********************************************************************************
 *** MAIN, MEAN DEVIATION NEED FIGURE                                         ***
 ********************************************************************************
-use "need_accountability_main_long.dta", clear
+use "data_main_long.dta", clear
 
 local ymin = 0
 local ymax = 1
@@ -476,7 +474,7 @@ restore
 ********************************************************************************
 *** MAIN, MEAN DEVIATION PRODUCTIVITY FIGURE                                 ***
 ********************************************************************************
-use "need_accountability_main_long.dta", clear
+use "data_main_long.dta", clear
 
 local ymin = 0
 local ymax = 1
@@ -526,7 +524,7 @@ by scenario case, sort: ttest deviation_a, by(accountability) unequal welch leve
 ********************************************************************************
 *** MAIN, REGRESSIONS AND MARGINAL EFFECTS                                   ***
 ********************************************************************************
-use "need_accountability_main_long.dta", clear
+use "data_main_long.dta", clear
 
 gen deviation_a = .
    replace deviation_a = (share_a - share_productivity) / (share_need_a - share_productivity_a) if scenario == 0
@@ -943,7 +941,7 @@ esttab dev_sce dev_acc dev_acc_sce dev_acc_sce_c dev_dif dev_acc_sce_dif dev_acc
 ********************************************************************************
 *** MAIN, ACCOUNTABILITY JUDGMENT                                            ***
 ********************************************************************************
-use "need_accountability_main_long.dta", clear
+use "data_main_long.dta", clear
 
 gen oversupply = 0
    replace oversupply = 1 if scenario == 0 & case >= 3
@@ -1094,7 +1092,7 @@ graph export "main_accountability_judg.pdf", replace
 ********************************************************************************
 *** MAIN, INDIVIDUAL DATA (I)                                                ***
 ********************************************************************************
-use "need_accountability_main_long.dta", clear
+use "data_main_long.dta", clear
 
 
 /* strict */
@@ -1228,7 +1226,7 @@ restore
 ********************************************************************************
 *** MAIN, INDIVIDUAL DATA (II)                                               ***
 ********************************************************************************
-use "need_accountability_main_long.dta", clear
+use "data_main_long.dta", clear
 
 gen dec_type = 0
    replace dec_type = 1 if share_a < share_productivity_a - 0.01
@@ -1445,7 +1443,7 @@ graph export "main_types_2.pdf", replace
 ********************************************************************************
 *** MAIN, REGRESSION SUPPLY SITUATION                                        ***
 ********************************************************************************
-use "need_accountability_main_long.dta", clear
+use "data_main_long.dta", clear
 
 gen accountjudg = .
    replace accountjudg = accountability_need if scenario == 0
