@@ -1519,5 +1519,4 @@ xtreg share_a i.accountability##i.scenario##i.sup_sit, re vce(robust) level(90)
 /* randomization of scenario and case */
 tabulate pos block_order, chi2
 
-
 exit
